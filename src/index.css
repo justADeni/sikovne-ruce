@@ -1,9 +1,34 @@
 @import "tailwindcss";
-
+:root {
+  --text: #1b1b1b;
+  --accent: #3c79e6;
+  --el-bg: #fafcff;
+  --body-bg: #ebf4ff;
+  --surface: #1a414f;
+  --surface-text: #46d69d;
+  --secondary: #ffba52;
+  --primary: #ff3380;
+  --emphasis: #0c1a56;
+}
+@theme {
+  --color-text: var(--text);
+  --color-accent: var(--accent);
+  --color-emphasis: var(--emphasis);
+  --color-surface-text: var(--surface-text);
+  --color-bg-body: var(--body-bg);
+  --color-bg-surface: var(--surface);
+  --color-bg-element: var(--el-bg);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+}
 html {
   font-size: 16px;
 
   body {
     min-height: 100svh;
+    @apply bg-bg-body relative;
+    &:has([data-mobile="true"]) {
+      overflow-y: hidden;
+    }
   }
 }

@@ -9,8 +9,6 @@ import eslintPluginPrettier from "eslint-plugin-prettier";
 import eslintPrettierConfig from "eslint-config-prettier";
 const tsRecommendedRules = tsConfigs["recommended-type-checked"].rules;
 const isProd = process.env.NODE_ENV === "production";
-import pkg from "eslint-config-prettier";
-const { rules: prettierRules } = pkg;
 export default [
   {
     files: ["**/*.{js,ts,jsx,tsx}"],
@@ -52,7 +50,7 @@ export default [
       "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/no-inferrable-types": "warn",
       "@typescript-eslint/await-thenable": "off",
-      "prettier/prettier": "error",
+      "prettier/prettier": "off",
       "@typescript-eslint/no-unused-vars": [
         "error",
         { argsIgnorePattern: "^_" }
