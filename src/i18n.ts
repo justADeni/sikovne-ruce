@@ -13,14 +13,22 @@ void i18n
     resources: {
       en: {
         translation: {
-          welcome: "Welcome",
-          description: "english text."
+          titleLabel: "Skilled Hands",
+          contactLabel: "Contact",
+          priceLabel: "Pricing",
+          aboutLabel: "About",
+          aboutText:
+            "We’re a small team that takes care of the everyday fixes that keep your home running smoothly. From assembling furniture and painting walls to repairing cracks and fixing light switches, we handle the little jobs that make a big difference. Friendly, reliable, and just a call away — we’re here to help with the tasks you don’t have time for."
         }
       },
-      fr: {
+      cz: {
         translation: {
-          welcome: "Bienvenue",
-          description: "texte français."
+          titleLabel: "Šikovné Ruce",
+          contactLabel: "Kontakt",
+          priceLabel: "Ceník",
+          aboutLabel: "O nás",
+          aboutText:
+            "Jsme malý tým, který se stará o každodenní opravy, které udržují váš domov v dobrém stavu. Zvládáme drobné práce, které mají velký význam, od montáže nábytku a malování stěn až po opravy prasklin a vypínačů. Jsme přátelští, spolehliví a stačí zavolat - jsme tu, abychom vám pomohli s úkoly, na které nemáte čas."
         }
       }
     }

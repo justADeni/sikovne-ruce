@@ -1,9 +1,19 @@
-import { Dispatch, JSX, SetStateAction } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import dude from "/images/dude.webp";
-import placeholder from "/images/placeholder/dude.webp";
+import { Dispatch, JSX, SetStateAction, useState } from "react";
+import UntitledImage from "/images/Untitled.webp";
+import englishFlag from "/images/english.webp";
+import czechFlag from "/images/czech.webp";
 import { FaBars } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions
+} from "@headlessui/react";
+const languages = [
+  { lang: "en", icon: englishFlag },
+  { lang: "cz", icon: czechFlag }
+];
 
 const Header = ({
   showMobileNav,
@@ -15,29 +25,30 @@ const Header = ({
   scrolled: boolean;
 }): JSX.Element => {
   const { i18n } = useTranslation();
-  const changeLanguage = (lng: string): void => {
-    void i18n.changeLanguage(lng);
+  const changeLanguage = (flagLang: { lang: string; icon: string }): void => {
+    void i18n.changeLanguage(flagLang.lang);
+    setSelectedLanguage(
+      languages.find((l): boolean => l.lang === flagLang.lang)
+    );
   };
+  const { t } = useTranslation();
+  const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
 
   return (
     <>
       <div
         className={`from-bg-body via-bg-body fixed top-0 right-0 left-0 bg-linear-to-b to-transparent p-2.5 transition-all duration-200 xl:p-3.5 ${showMobileNav ? "max-md:p-0" : ""}`}>
         <header
-          className={`bg-bg-surface text-surface-text z-10 flex items-center justify-center overflow-hidden px-3 py-4 font-bold transition-all duration-200 md:flex-row md:rounded-md md:text-lg md:shadow-md md:shadow-black/40 lg:text-xl xl:text-2xl 2xl:text-3xl ${showMobileNav ? "h-svh flex-col text-4xl" : "flex-row rounded-md shadow-md shadow-black/40"} ${scrolled ? "h-[3.25rem] lg:h-[3.75rem] xl:h-[4.125rem] 2xl:h-[4.5625rem]" : "h-[7.5rem] lg:h-[8.625rem] 2xl:h-[9.625rem]"}`}>
+          className={`bg-bg-surface text-surface-text z-10 flex items-center justify-center px-3 py-4 font-bold transition-all duration-200 md:flex-row md:rounded-md md:text-lg md:shadow-md md:shadow-black/40 lg:text-xl xl:text-2xl ${showMobileNav ? "flex-col text-4xl max-md:h-svh" : "flex-row rounded-md shadow-md shadow-black/40"} ${scrolled ? "h-[3.25rem] lg:h-[3.75rem] xl:h-[4.125rem] 2xl:h-[4.5625rem]" : "h-[7.5rem] lg:h-[8.625rem] 2xl:h-[9.625rem]"}`}>
           <div
-            className={`group relative m-2.5 origin-center overflow-hidden rounded-full transition-all duration-200 md:inline-flex ${scrolled ? "size-0 outline-none" : "outline-surface-text size-[4.25rem] outline-4 outline-offset-5 md:size-[5.375rem] xl:size-[6.375rem]"} ${showMobileNav ? "hidden" : "inline-flex"}`}>
-            <LazyLoadImage
-              src={dude}
-              placeholderSrc={placeholder}
-              className="transition-all duration-200 group-hover:scale-105"
-              wrapperClassName="lazy-wrapper group-hover:grayscale group-hover:brightness-90 duration-200 transition-all"
-              alt="hello i am {name}"
-              width={102}
-              height={102}
-              title="hello i am {name}"
-            />
-            <div className="group-hover:bg-surface-text/40 absolute inset-0 transition-colors duration-200" />
+            className={`traal flex h-full items-center duration-200 ${scrolled ? "gap-x-0" : "gap-x-6"} ${showMobileNav ? "max-md:hidden" : ""}`}>
+            <div
+              className={`aspect-square h-full w-auto overflow-hidden rounded-lg transition-all duration-200 ${scrolled ? "opacity-0" : "opacity-100"}`}>
+              <img src={UntitledImage} alt="logo" />
+            </div>
+            <h1 className="text-2xl uppercase lg:text-3xl 2xl:text-4xl">
+              {t("titleLabel")}
+            </h1>
           </div>
           <nav
             className={`ml-auto ${showMobileNav ? "max-md:ml-0" : ""}`}
@@ -46,23 +57,42 @@ const Header = ({
               className={`flex items-center gap-x-2 gap-y-6 md:flex-row lg:gap-x-4 2xl:gap-x-6 ${showMobileNav ? "flex-col" : ""}`}>
               <li
                 className={`hover:underline ${showMobileNav ? "max-md:underline" : "max-md:hidden"}`}>
-                <a href="#pricing">see pricing</a>
+                <a href="#pricing">{t("priceLabel")}</a>
               </li>
               <li
                 className={`hover:underline ${showMobileNav ? "max-md:underline" : "max-md:hidden"} `}>
-                <a href="#contact">contact</a>
+                <a href="#contact">{t("contactLabel")}</a>
               </li>
 
-              <li
-                className={`hover:underline ${showMobileNav ? "" : "max-md:hidden"} `}>
-                <select
-                  className="cursor-pointer"
-                  title="language"
-                  onChange={(e): void => changeLanguage(e.target.value)}
-                  value={i18n.language}>
-                  <option value="en">English</option>
-                  <option value="fr">Français</option>
-                </select>
+              <li className={` ${showMobileNav ? "" : "max-md:hidden"} `}>
+                <Listbox value={selectedLanguage} onChange={changeLanguage}>
+                  <div className="relative">
+                    <ListboxButton className="bg-primary text-emphasis cursor-pointer overflow-hidden rounded-md shadow-md shadow-black/40 transition-all duration-200 outline-none hover:-translate-y-1 hover:shadow-sm active:-translate-y-0.5">
+                      <img
+                        className="aspect-3/2 h-auto w-[2.5rem]"
+                        src={selectedLanguage?.icon}
+                        alt={selectedLanguage?.lang}
+                      />
+                    </ListboxButton>
+                    <ListboxOptions className="absolute top-full mt-2 w-[120px] overflow-hidden rounded-md bg-white shadow-sm shadow-black/40 max-md:left-1/2 max-md:-translate-x-1/2 md:right-0">
+                      {languages.map(
+                        (flagLang, idx): JSX.Element => (
+                          <ListboxOption
+                            key={idx}
+                            value={flagLang}
+                            className={`flex cursor-pointer flex-row items-center gap-x-2 p-2 text-black uppercase hover:bg-blue-500 hover:text-white`}>
+                            <img
+                              className="aspect-3/2 h-auto w-[2.5rem]"
+                              src={flagLang.icon}
+                              alt={flagLang.lang}
+                            />
+                            {flagLang.lang}
+                          </ListboxOption>
+                        )
+                      )}
+                    </ListboxOptions>
+                  </div>
+                </Listbox>
               </li>
               <li
                 className={`cursor-pointer text-4xl max-md:right-[1.75rem] md:hidden ${

@@ -1,12 +1,8 @@
-import { useTranslation } from "react-i18next";
 import { JSX } from "react/jsx-runtime";
 
 import { useEffect, useRef, useState } from "react";
 import Header from "./components/Header";
-
 const App = (): JSX.Element => {
-  const { t } = useTranslation();
-
   const [showMobileNav, setShowMobileNav] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const lastScrollY = useRef(0);
@@ -33,7 +29,9 @@ const App = (): JSX.Element => {
         setShowMobileNav={setShowMobileNav}
         scrolled={scrolled}
       />
-      <section className="m-1 inline-block border p-2">introduction</section>
+      <section className="bg-bg-element rounded-md p-2 shadow-sm shadow-black/40">
+        introduction
+      </section>
       <section className="m-1 inline-block border p-2">
         <div className="bg-accent">photo desc</div>
         <div className="bg-primary">desc photo</div>
@@ -44,9 +42,6 @@ const App = (): JSX.Element => {
       <section className="m-1 inline-block h-[200svh] border p-2" id="contact">
         contact
       </section>
-
-      <h1>{t("welcome")}</h1>
-      <p>{t("description")}</p>
     </div>
   );
 };
