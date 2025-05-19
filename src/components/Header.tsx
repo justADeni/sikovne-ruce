@@ -1,19 +1,9 @@
-import { Dispatch, JSX, SetStateAction, useState } from "react";
+import { Dispatch, JSX, SetStateAction } from "react";
 import UntitledImage from "/images/Untitled.webp";
-import englishFlag from "/images/english.webp";
-import czechFlag from "/images/czech.webp";
+
 import { FaBars } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
-import {
-  Listbox,
-  ListboxButton,
-  ListboxOption,
-  ListboxOptions
-} from "@headlessui/react";
-const languages = [
-  { lang: "en", icon: englishFlag },
-  { lang: "cz", icon: czechFlag }
-];
+import LanguageDropdown from "./LanguageDropdown";
 
 const Header = ({
   showMobileNav,
@@ -24,15 +14,7 @@ const Header = ({
   setShowMobileNav: Dispatch<SetStateAction<boolean>>;
   scrolled: boolean;
 }): JSX.Element => {
-  const { i18n } = useTranslation();
-  const changeLanguage = (flagLang: { lang: string; icon: string }): void => {
-    void i18n.changeLanguage(flagLang.lang);
-    setSelectedLanguage(
-      languages.find((l): boolean => l.lang === flagLang.lang)
-    );
-  };
   const { t } = useTranslation();
-  const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
 
   return (
     <>
@@ -65,34 +47,7 @@ const Header = ({
               </li>
 
               <li className={` ${showMobileNav ? "" : "max-md:hidden"} `}>
-                <Listbox value={selectedLanguage} onChange={changeLanguage}>
-                  <div className="relative">
-                    <ListboxButton className="bg-primary text-emphasis cursor-pointer overflow-hidden rounded-md shadow-md shadow-black/40 transition-all duration-200 outline-none hover:-translate-y-1 hover:shadow-sm active:-translate-y-0.5">
-                      <img
-                        className="aspect-3/2 h-auto w-[2.5rem]"
-                        src={selectedLanguage?.icon}
-                        alt={selectedLanguage?.lang}
-                      />
-                    </ListboxButton>
-                    <ListboxOptions className="absolute top-full mt-2 w-[120px] overflow-hidden rounded-md bg-white shadow-sm shadow-black/40 max-md:left-1/2 max-md:-translate-x-1/2 md:right-0">
-                      {languages.map(
-                        (flagLang, idx): JSX.Element => (
-                          <ListboxOption
-                            key={idx}
-                            value={flagLang}
-                            className={`flex cursor-pointer flex-row items-center gap-x-2 p-2 text-black uppercase hover:bg-blue-500 hover:text-white`}>
-                            <img
-                              className="aspect-3/2 h-auto w-[2.5rem]"
-                              src={flagLang.icon}
-                              alt={flagLang.lang}
-                            />
-                            {flagLang.lang}
-                          </ListboxOption>
-                        )
-                      )}
-                    </ListboxOptions>
-                  </div>
-                </Listbox>
+                <LanguageDropdown />
               </li>
               <li
                 className={`cursor-pointer text-4xl max-md:right-[1.75rem] md:hidden ${

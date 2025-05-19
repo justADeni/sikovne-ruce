@@ -29,8 +29,14 @@ const App = (): JSX.Element => {
         setShowMobileNav={setShowMobileNav}
         scrolled={scrolled}
       />
-      <section className="bg-bg-element rounded-md p-2 shadow-sm shadow-black/40">
-        introduction
+      <section className="bg-bg-element grid grid-cols-2 gap-x-20 rounded-md px-12 py-5 shadow-sm shadow-black/40">
+        <div className="border border-black">IMAGE LOREM</div>
+        <div className="border border-black">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
+          exercitationem in accusantium officiis nihil ratione distinctio magnam
+          quae, saepe laboriosam minus necessitatibus beatae soluta rem dolore
+          id ex ipsam reiciendis.
+        </div>
       </section>
       <section className="m-1 inline-block border p-2">
         <div className="bg-accent">photo desc</div>
