@@ -38,11 +38,13 @@ const App = (): JSX.Element => {
           id ex ipsam reiciendis.
         </div>
       </section>
-      <section className="m-1 inline-block border p-2">
+      <section className="bg-bg-element rounded-md px-12 py-5 shadow-sm shadow-black/40">
         <div className="bg-accent">photo desc</div>
         <div className="bg-primary">desc photo</div>
       </section>
-      <section className="m-1 inline-block border p-2" id="pricing">
+      <section
+        className="bg-bg-element rounded-md px-12 py-5 shadow-sm shadow-black/40"
+        id="pricing">
         price estimates (static or dynamically calculatable with use of inputs)?
       </section>
       <section className="m-1 inline-block h-[200svh] border p-2" id="contact">
