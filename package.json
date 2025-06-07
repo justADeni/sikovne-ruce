@@ -1,6 +1,6 @@
 {
-  "name": "handyman",
-  "homepage": "https://justADeni.github.io/sikovne-ruce/",
+  "name": "sikovne-ruce",
+  "homepage": "https://justadeni.github.io/sikovne-ruce/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
