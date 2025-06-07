@@ -16,5 +16,6 @@ export default defineConfig({
     modules: {
       scopeBehaviour: "local"
     }
-  }
+  },
+  base: "/sikovne-ruce"
 });
