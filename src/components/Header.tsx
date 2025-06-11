@@ -1,6 +1,5 @@
-import { Dispatch, JSX, SetStateAction } from "react";
 import UntitledImage from "/images/Untitled.webp";
-
+import { Dispatch, JSX, SetStateAction } from "react";
 import { FaBars } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import LanguageDropdown from "./LanguageDropdown";
@@ -19,9 +18,9 @@ const Header = ({
   return (
     <>
       <div
-        className={`from-bg-body via-bg-body fixed top-0 right-0 left-0 z-10 bg-linear-to-b to-transparent p-2.5 transition-all duration-200 xl:p-3.5 ${showMobileNav ? "max-md:p-0" : ""}`}>
+        className={`from-body-bg via-body-bg fixed top-0 right-0 left-0 z-10 bg-linear-to-b to-transparent p-2.5 transition-all duration-200 xl:p-3.5 ${showMobileNav ? "max-md:p-0" : ""}`}>
         <header
-          className={`bg-bg-surface text-surface-text flex items-center justify-center px-3 py-4 font-bold transition-all duration-200 md:flex-row md:rounded-md md:text-lg md:shadow-md md:shadow-black/40 lg:text-xl xl:text-2xl ${showMobileNav ? "flex-col text-4xl max-md:h-svh" : "flex-row rounded-md shadow-md shadow-black/40"} ${scrolled ? "h-[3.25rem] lg:h-[3.75rem] xl:h-[4.125rem] 2xl:h-[4.5625rem]" : "h-[7.5rem] lg:h-[8.625rem] 2xl:h-[9.625rem]"}`}>
+          className={`text-el-bg md:shade bg-accent flex items-center justify-center px-3 py-4 font-bold transition-all duration-200 md:flex-row md:rounded-md md:text-lg lg:text-xl xl:text-2xl ${showMobileNav ? "flex-col text-4xl max-md:h-svh" : "shade flex-row rounded-md"} ${scrolled ? "h-[3.25rem] lg:h-[3.75rem] xl:h-[4.125rem] 2xl:h-[4.5625rem]" : "h-[7.5rem] lg:h-[8.625rem] 2xl:h-[9.625rem]"}`}>
           <div
             className={`traal flex h-full items-center duration-200 ${scrolled ? "gap-x-0" : "gap-x-6"} ${showMobileNav ? "max-md:hidden" : ""}`}>
             <div
@@ -37,16 +36,14 @@ const Header = ({
             data-mobile={showMobileNav}>
             <ul
               className={`flex items-center gap-x-2 gap-y-6 md:flex-row lg:gap-x-4 2xl:gap-x-6 ${showMobileNav ? "flex-col" : ""}`}>
-              <li
-                className={`hover:underline ${showMobileNav ? "max-md:underline" : "max-md:hidden"}`}>
+              <li className={` ${showMobileNav ? "" : "max-md:hidden"}`}>
                 <a href="#pricing">{t("priceLabel")}</a>
               </li>
-              <li
-                className={`hover:underline ${showMobileNav ? "max-md:underline" : "max-md:hidden"} `}>
+              <li className={` ${showMobileNav ? "" : "max-md:hidden"}`}>
                 <a href="#contact">{t("contactLabel")}</a>
               </li>
 
-              <li className={` ${showMobileNav ? "" : "max-md:hidden"} `}>
+              <li className={`${showMobileNav ? "" : "max-md:hidden"} `}>
                 <LanguageDropdown />
               </li>
               <li

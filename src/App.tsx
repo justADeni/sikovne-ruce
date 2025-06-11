@@ -2,7 +2,10 @@ import { JSX } from "react/jsx-runtime";
 
 import { useEffect, useRef, useState } from "react";
 import Header from "./components/Header";
-import IDKNameSection from "./components/IDKNameSection";
+import AboutSection from "./components/AboutSection";
+import PricingSection from "./components/PricingSection";
+import IntroSection from "./components/IntroSection";
+import ContactSection from "./components/ContactSection";
 const App = (): JSX.Element => {
   const [showMobileNav, setShowMobileNav] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -30,27 +33,12 @@ const App = (): JSX.Element => {
         setShowMobileNav={setShowMobileNav}
         scrolled={scrolled}
       />
-      <section className="bg-bg-element container grid grid-cols-2 gap-x-20 rounded-md px-12 py-5 shadow-sm shadow-black/40">
-        <div className="border border-black">IMAGE LOREM</div>
-        <div className="border border-black">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-          exercitationem in accusantium officiis nihil ratione distinctio magnam
-          quae, saepe laboriosam minus necessitatibus beatae soluta rem dolore
-          id ex ipsam reiciendis.
-        </div>
-      </section>
-      <IDKNameSection />
-
-      <section
-        className="bg-bg-element container rounded-md px-12 py-5 shadow-sm shadow-black/40"
-        id="pricing">
-        price estimates (static or dynamically calculatable with use of inputs)?
-      </section>
-      <section
-        className="bg-bg-element container m-1 inline-block h-[200svh] rounded-md p-2 px-12 py-5 shadow-sm shadow-black/40"
-        id="contact">
-        contact
-      </section>
+      <div className="space-y-6 py-6 md:space-y-8 lg:space-y-10 xl:space-y-12 2xl:space-y-14">
+        <IntroSection />
+        <AboutSection />
+        <PricingSection />
+        <ContactSection />
+      </div>
     </div>
   );
 };

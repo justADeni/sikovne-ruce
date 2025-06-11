@@ -1,25 +1,49 @@
 @import "tailwindcss";
 :root {
-  --text: #1b1b1b;
-  --accent: #3c79e6;
-  --el-bg: #fafcff;
-  --body-bg: #ebf4ff;
-  --surface: #1a414f;
-  --surface-text: #46d69d;
-  --secondary: #ffba52;
-  --primary: #ff3380;
-  --emphasis: #0c1a56;
+  --text-default: rgb(23, 34, 40);
+  --text: rgb(23, 98, 18);
+  --body-bg: rgb(241, 251, 248);
+  --el-bg: rgb(255, 255, 255);
+  --primary: rgb(60, 193, 55);
+  --secondary: rgb(166, 214, 165);
+  --accent: rgb(37, 85, 55);
 }
 @theme {
+  --color-text-default: var(--text-default);
   --color-text: var(--text);
-  --color-accent: var(--accent);
-  --color-emphasis: var(--emphasis);
-  --color-surface-text: var(--surface-text);
-  --color-bg-body: var(--body-bg);
-  --color-bg-surface: var(--surface);
-  --color-bg-element: var(--el-bg);
-  --color-primary: var(--primary);
+  --color-body-bg: var(--body-bg);
+  --color-el-bg: var(--el-bg);
   --color-secondary: var(--secondary);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+}
+@utility shade {
+  transition: all 0.2s;
+  @apply shadow-text-default/40 shadow-md;
+  @variant hover {
+    @apply shadow-sm;
+  }
+}
+@utility container-width {
+  transition:
+    width 0.2s,
+    margin 0.2s;
+  @apply mx-auto grid w-[calc(100%-1.5rem)] rounded-md;
+  @variant sm {
+    @apply w-xl;
+  }
+  @variant md {
+    @apply w-2xl;
+  }
+  @variant lg {
+    @apply w-3xl;
+  }
+  @variant xl {
+    @apply w-4xl;
+  }
+  @variant 2xl {
+    @apply w-6xl;
+  }
 }
 html {
   font-size: 16px;
@@ -30,12 +54,31 @@ html {
   }
   body {
     min-height: 100svh;
-    @apply bg-bg-body relative;
+    @apply bg-body-bg text-text-default relative;
     &:has([data-mobile="true"]) {
       overflow-y: hidden;
     }
   }
-  .container {
-    @apply mx-auto w-full px-4 py-3 sm:max-w-lg sm:px-6 sm:py-4 md:max-w-2xl lg:max-w-3xl lg:px-10 lg:py-6 xl:max-w-5xl xl:px-12 xl:py-8 2xl:max-w-7xl 2xl:px-16 2xl:py-10;
+
+  a {
+    @apply relative transition-colors duration-200;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 100%;
+      height: 2px;
+      background-color: currentColor;
+      transform: translateX(-50%) scaleX(0);
+      transform-origin: center;
+      transition: transform 0.2s ease;
+    }
+    @variant hover {
+      @apply text-primary;
+      &::after {
+        transform: translateX(-50%) scaleX(1);
+      }
+    }
   }
 }

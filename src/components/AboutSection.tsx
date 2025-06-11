@@ -28,22 +28,22 @@ const data = [
   }
 ];
 
-const IDKNameSection = (): JSX.Element => {
+const AboutSection = (): JSX.Element => {
   return (
-    <section className="space-y-6">
+    <section className="shade container-width bg-el-bg space-y-6 md:space-y-10 xl:space-y-14 2xl:space-y-20">
       {data.map((el, i): JSX.Element => {
         const reverse = i % 2 === 0;
         return (
           <div
-            className="bg-bg-element container grid items-center gap-x-3 gap-y-6 rounded-md shadow-sm shadow-black/40 transition-all duration-200 max-md:grid-rows-[1fr_0fr] sm:gap-x-4 md:grid-cols-2 md:gap-x-5 md:px-8 md:py-5 lg:gap-x-6 xl:gap-x-8 2xl:gap-x-10"
+            className="grid items-center gap-x-3 gap-y-6 transition-all duration-200 max-md:grid-rows-[1fr_0fr] sm:gap-x-4 md:grid-cols-2 md:gap-x-5 lg:gap-x-6 xl:gap-x-8 2xl:gap-x-10"
             key={i}>
             <div className="group relative aspect-square overflow-hidden rounded-lg">
               <LazyImg
                 alt={el.alt}
                 highResSrc={el.src}
                 lowResSrc={el.lowResSrc}
-                width={200}
-                height={200}
+                width={600}
+                height={600}
                 className="size-full"
               />
               <div className="absolute inset-0 shadow-[inset_0rem_0rem_2.5rem_-0.75rem_rgba(0,0,0,0.3)] transition-all duration-200 group-hover:shadow-[inset_0rem_0rem_2.0625rem_-1rem_rgba(0,0,0,0.24)]" />
@@ -56,4 +56,4 @@ const IDKNameSection = (): JSX.Element => {
   );
 };
 
-export default IDKNameSection;
+export default AboutSection;

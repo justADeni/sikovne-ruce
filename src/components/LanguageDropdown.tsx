@@ -4,13 +4,20 @@ import {
   ListboxOption,
   ListboxOptions
 } from "@headlessui/react";
-import englishFlag from "/images/english.webp";
-import czechFlag from "/images/czech.webp";
 import { useTranslation } from "react-i18next";
 import { JSX, useState } from "react";
+import LazyImg from "./LazyImg";
 const languages = [
-  { lang: "cz", icon: czechFlag },
-  { lang: "en", icon: englishFlag }
+  {
+    lang: "cz",
+    icon: "/images/czech.webp",
+    lowResIcon: "/images/placeholder/czech.webp"
+  },
+  {
+    lang: "en",
+    icon: "/images/english.webp",
+    lowResIcon: "/images/placeholder/english.webp"
+  }
 ];
 const LanguageDropdown = (): JSX.Element => {
   const { i18n } = useTranslation();
@@ -23,25 +30,28 @@ const LanguageDropdown = (): JSX.Element => {
   };
   return (
     <Listbox value={selectedLanguage} onChange={changeLanguage}>
-      <div className="relative">
-        <ListboxButton className="bg-primary text-emphasis cursor-pointer overflow-hidden rounded-md shadow-md shadow-black/40 transition-all duration-200 outline-none hover:-translate-y-1 hover:shadow-sm active:-translate-y-0.5">
+      <div className="relative flex items-center justify-center">
+        <ListboxButton className="bg-primary shade border-accent text-emphasis cursor-pointer overflow-hidden rounded-md border transition-all duration-200 outline-none hover:scale-105 active:-translate-y-0.5 active:scale-105">
           <img
             className="aspect-3/2 h-auto w-[2.5rem]"
             src={selectedLanguage?.icon}
             alt={selectedLanguage?.lang}
           />
         </ListboxButton>
-        <ListboxOptions className="absolute top-full mt-2 w-[120px] overflow-hidden rounded-md bg-white shadow-sm shadow-black/40 max-md:left-1/2 max-md:-translate-x-1/2 md:right-0">
+        <ListboxOptions className="bg-el-bg text-text shade absolute top-full mt-2 w-[120px] overflow-hidden rounded-md max-md:left-1/2 max-md:-translate-x-1/2 md:right-0">
           {languages.map(
             (flagLang, idx): JSX.Element => (
               <ListboxOption
                 key={idx}
                 value={flagLang}
-                className={`flex cursor-pointer flex-row items-center gap-x-2 p-2 text-black uppercase hover:bg-blue-500 hover:text-white`}>
-                <img
-                  className="aspect-3/2 h-auto w-[2.5rem]"
-                  src={flagLang.icon}
+                className={`hover:bg-secondary transition-color hover:text-el-bg flex cursor-pointer flex-row items-center gap-x-2 p-2 uppercase duration-200`}>
+                <LazyImg
+                  highResSrc={flagLang.icon}
                   alt={flagLang.lang}
+                  lowResSrc={flagLang.lowResIcon}
+                  width={40}
+                  height={27}
+                  className="aspect-3/2 h-auto w-[2.5rem]"
                 />
                 {flagLang.lang}
               </ListboxOption>
