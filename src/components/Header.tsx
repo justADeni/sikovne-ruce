@@ -18,9 +18,9 @@ const Header = ({
   return (
     <>
       <div
-        className={`from-body-bg via-body-bg fixed top-0 right-0 left-0 z-10 bg-linear-to-b to-transparent p-2.5 transition-all duration-200 xl:p-3.5 ${showMobileNav ? "max-md:p-0" : ""}`}>
+        className={`from-body-bg via-body-bg fixed top-0 right-0 left-0 z-30 bg-linear-to-b to-transparent p-2.5 transition-all duration-200 xl:p-3.5 ${showMobileNav ? "max-md:p-0" : ""}`}>
         <header
-          className={`text-el-bg md:shade bg-accent flex items-center justify-center px-3 py-4 font-bold transition-all duration-200 md:flex-row md:rounded-md md:text-lg lg:text-xl xl:text-2xl ${showMobileNav ? "flex-col text-4xl max-md:h-svh" : "shade flex-row rounded-md"} ${scrolled ? "h-[3.25rem] lg:h-[3.75rem] xl:h-[4.125rem] 2xl:h-[4.5625rem]" : "h-[7.5rem] lg:h-[8.625rem] 2xl:h-[9.625rem]"}`}>
+          className={`text-el-bg md:shade bg-accent flex items-center justify-center px-3 py-4 text-4xl font-bold transition-all duration-200 md:flex-row md:rounded-md md:text-lg lg:text-xl xl:text-2xl ${showMobileNav ? "flex-col max-md:h-svh" : "shade flex-row rounded-md"} ${scrolled ? "h-[3.25rem] lg:h-[3.75rem] xl:h-[4.125rem] 2xl:h-[4.5625rem]" : "h-[7.5rem] lg:h-[8.625rem] 2xl:h-[9.625rem]"}`}>
           <div
             className={`traal flex h-full items-center duration-200 ${scrolled ? "gap-x-0" : "gap-x-6"} ${showMobileNav ? "max-md:hidden" : ""}`}>
             <div
@@ -47,7 +47,7 @@ const Header = ({
                 <LanguageDropdown />
               </li>
               <li
-                className={`cursor-pointer text-4xl max-md:right-[1.75rem] md:hidden ${
+                className={`bg-accent cursor-pointer text-4xl transition-all duration-200 max-md:right-[1.75rem] md:hidden ${
                   showMobileNav
                     ? "transition-all duration-200 max-md:fixed max-md:top-[3.25rem] max-md:right-[2.375rem]"
                     : `max-md:absolute ${scrolled ? "max-md:top-[1.15rem]" : "max-md:top-[3.25rem]"} `

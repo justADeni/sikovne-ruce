@@ -30,14 +30,14 @@ const data = [
 
 const AboutSection = (): JSX.Element => {
   return (
-    <section className="shade container-width bg-el-bg space-y-6 md:space-y-10 xl:space-y-14 2xl:space-y-20">
+    <section className="shade container-padding container-width bg-el-bg space-y-6 md:space-y-10 xl:space-y-14 2xl:space-y-20">
       {data.map((el, i): JSX.Element => {
         const reverse = i % 2 === 0;
         return (
           <div
             className="grid items-center gap-x-3 gap-y-6 transition-all duration-200 max-md:grid-rows-[1fr_0fr] sm:gap-x-4 md:grid-cols-2 md:gap-x-5 lg:gap-x-6 xl:gap-x-8 2xl:gap-x-10"
             key={i}>
-            <div className="group relative aspect-square overflow-hidden rounded-lg">
+            <div className="group aspect-square overflow-hidden rounded-lg">
               <LazyImg
                 alt={el.alt}
                 highResSrc={el.src}
@@ -46,7 +46,6 @@ const AboutSection = (): JSX.Element => {
                 height={600}
                 className="size-full"
               />
-              <div className="absolute inset-0 shadow-[inset_0rem_0rem_2.5rem_-0.75rem_rgba(0,0,0,0.3)] transition-all duration-200 group-hover:shadow-[inset_0rem_0rem_2.0625rem_-1rem_rgba(0,0,0,0.24)]" />
             </div>
             <p className={reverse ? "" : "md:-order-1"}>{el.text}</p>
           </div>
